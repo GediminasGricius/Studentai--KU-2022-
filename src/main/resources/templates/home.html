@@ -11,27 +11,13 @@
 		<div class="row">
 			<div class="col-md-12 mt-5">
 				<div class="card">
-					<div class="card-header">Grupės duomenys</div>
+					<div class="card-header">Studijų sistema</div>
 					<div class="card-body">
-						<a href="groupNew" class="btn btn-info">Pridėti naują grupę</a>
-						<table class="table">
-						  <tr>
-						  	<th>Grupės pavadinimas</th>
-						  	<th>Metai</th>
-						  	<th>Veiksmai</th>
-						  </tr>
-						  
-						  <tr th:each="group: ${groups}">
-						  	<td th:text="${group.name}"></td>
-						  	<td th:text="${group.year}"></td>
-						  	<td style="width: 200px;">
-						  		<a th:href="'groupUpdate?id='+${group.id}" class="btn btn-success">Redaguoti</a>
-						  		<a th:href="'groupDelete?id='+${group.id}" class="btn btn-danger">Ištrinti</a>
-						  	</td>
-						  
-						  </tr>
-						
-						</table>
+						<h2>Studentų grupių redagavimas</h2>
+						<a href="/group/" class="btn btn-info">Parodyti studentų grupes</a>	
+						<hr>
+						<h2>Studentų sąrašų redagavimas</h2>
+						<a href="/student/" class="btn btn-info">Parodyti studentų sąrašą</a>	
 					
 					</div>
 				</div>
