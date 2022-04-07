@@ -13,6 +13,7 @@
 				<div class="card">
 					<div class="card-header">Grupės duomenys</div>
 					<div class="card-body">
+						<a href="groupNew" class="btn btn-info">Pridėti naują grupę</a>
 						<table class="table">
 						  <tr>
 						  	<th>Grupės pavadinimas</th>
@@ -24,7 +25,7 @@
 						  	<td th:text="${group.name}"></td>
 						  	<td th:text="${group.year}"></td>
 						  	<td style="width: 200px;">
-						  		<a href="#" class="btn btn-success">Redaguoti</a>
+						  		<a th:href="'groupUpdate?id='+${group.id}" class="btn btn-success">Redaguoti</a>
 						  		<a href="#" class="btn btn-danger">Ištrinti</a>
 						  	</td>
 						  
