@@ -48,5 +48,11 @@ public class HomeController {
 		groupService.updateGroup(g);
 		return "redirect:/";
 	}
+	
+	@GetMapping("/groupDelete")
+	public String groupDelete(@RequestParam("id") Integer id) {
+		groupService.deleteGroup(id);
+		return "redirect:/";
+	}
 
 }
