@@ -13,27 +13,24 @@
 				<div class="card">
 					<div class="card-header">Grupės duomenys</div>
 					<div class="card-body">
-						<a href="/group/new" class="btn btn-info">Pridėti naują grupę</a>
+						
 						<table class="table">
 						  <tr>
-						  	<th>Grupės pavadinimas</th>
-						  	<th>Metai</th>
-						  	<th>Studentai</th>
+						  	<th>Vardas</th>
+						  	<th>Pavardė</th>
+						  	<th>El. apštas</th>
+						  	<th>Grupė</th>
 						  	<th>Veiksmai</th>
 						  </tr>
 						  
-						  <tr th:each="group: ${groups}">
-						  	<td th:text="${group.name}"></td>
-						  	<td th:text="${group.year}"></td>
-						  	<td>
-						  		<div th:each="student: ${group.students}">
-						  			<span th:text="${student.surname}"></span>
-						  		</div>
-						  	</td>
+						  <tr th:each="student: ${students}">
+						  	<td th:text="${student.name}"></td>
+						  	<td th:text="${student.surname}"></td>
+						  	<td th:text="${student.email}"></td>
+						  	<td th:text="${student.group.name}"></td>
+						  
 						  	<td style="width: 200px;">
-						  		<a th:href="'/group/update/'+${group.id}" class="btn btn-success">Redaguoti</a>
-						  		<a th:href="'/group/delete/'+${group.id}" class="btn btn-danger">Ištrinti</a>
-						  	</td>
+				            </td>
 						  
 						  </tr>
 						
