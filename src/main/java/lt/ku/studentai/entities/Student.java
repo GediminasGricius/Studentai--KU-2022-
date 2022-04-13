@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+
+import org.hibernate.validator.constraints.Length;
+
 
 @Entity
 @Table(name="students")
@@ -18,12 +22,15 @@ public class Student {
 	private Integer id;
 	
 	@Column(length = 64)
+	@Length(min=3, max=64, message = "Vardas turi būti ilgesnis nei 3 simboliai ir trumpesnis už 64 simbolius")
 	private String name;
 	
 	@Column(length = 64)
+	@Length(min=3, max=64, message = "Pavardė turi būti ilgesnis nei 3 simboliai ir trumpesnis už 64 simbolius")
 	private String surname;
 	
 	@Column(length = 64)
+	@Email(message = "El. pašto adresas turi būti tvarkingas")
 	private String email;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
