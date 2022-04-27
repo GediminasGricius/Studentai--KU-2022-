@@ -1,5 +1,6 @@
 package lt.ku.studentai.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,18 +10,31 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import lt.ku.studentai.services.UserService;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
+	
+	@Autowired
+	UserService userService;
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		BCryptPasswordEncoder bc=new BCryptPasswordEncoder();
+		
+		auth
+			.userDetailsService(this.userService)
+			.passwordEncoder(bc);
+		
+		/*
 		auth
 			.inMemoryAuthentication()
 				.withUser("gediminas").password(bc.encode("LabasRytas")).roles("admin", "user")
 				.and()
 				.withUser("jonas").password(bc.encode("LabasVakaras")).roles("user");
+		*/		
 	}
 	
 	
@@ -41,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.formLogin()
 				.loginPage("/login")
 				.defaultSuccessUrl("/")
-				.failureUrl("/login")
+				.failureUrl("/login-error")
 		.and()
 			.logout()
 				.logoutUrl("/logout")

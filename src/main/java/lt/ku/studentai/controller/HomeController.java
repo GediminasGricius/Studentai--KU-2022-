@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import lt.ku.studentai.entities.Group;
 import lt.ku.studentai.entities.Student;
+import lt.ku.studentai.entities.User;
 import lt.ku.studentai.services.GroupService;
 import lt.ku.studentai.services.StudentService;
+import lt.ku.studentai.services.UserService;
 
 @Controller
 public class HomeController {
@@ -18,8 +20,14 @@ public class HomeController {
 	@Autowired
 	GroupService groupService;
 	
+	@Autowired
+	UserService userService;
+	
 	@GetMapping("/")
 	public String home() {
+		
+		//User user=new User("gediminas","LabasRytas","g.gricius@ituostas.lt","admin");
+		//userService.addUser(user);
 		
 		//Student s=new Student("Jonas", "Jonaitis", "jonas@gmail.com");
 		//studentService.addStudent(s);
