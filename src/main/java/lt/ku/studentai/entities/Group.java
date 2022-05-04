@@ -24,6 +24,9 @@ public class Group {
 	@Column
 	private Integer year;
 	
+	@Column
+	private String fileName;
+	
 	@OneToMany(mappedBy = "group", fetch = FetchType.EAGER)
 	private List<Student> students;
 	
@@ -34,6 +37,13 @@ public class Group {
 	public Group(String name, Integer year) {
 		this.name = name;
 		this.year = year;
+	}
+
+	public Group(String name, Integer year, String fileName) {
+		super();
+		this.name = name;
+		this.year = year;
+		this.fileName = fileName;
 	}
 
 	public Integer getId() {
@@ -71,6 +81,14 @@ public class Group {
 	@Override
 	public String toString() {
 		return "Group [id=" + id + ", name=" + name + ", year=" + year + "]";
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	

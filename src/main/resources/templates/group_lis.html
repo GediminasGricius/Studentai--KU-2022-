@@ -20,6 +20,7 @@
 						  	<th>Grupės pavadinimas</th>
 						  	<th>Metai</th>
 						  	<th>Studentai</th>
+						  	<th>Sutartis</th>
 						  	<th>Veiksmai</th>
 						  </tr>
 						  
@@ -30,6 +31,9 @@
 						  		<div th:each="student: ${group.students}">
 						  			<span th:text="${student.surname}"></span>
 						  		</div>
+						  	</td>
+						    <td>
+						  			<a th:href="'/group/agreement/'+${group.id}" class="btn btn-success">Parsiųsti</a>
 						  	</td>
 						  	<td style="width: 200px;">
 						  		<a th:href="'/group/update/'+${group.id}" class="btn btn-success">Redaguoti</a>
