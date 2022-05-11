@@ -45,8 +45,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http
 			.authorizeRequests()
 				.antMatchers("/student/new").hasAnyRole("admin")
+				.antMatchers("/api/**").permitAll()
 				.antMatchers("/").permitAll()
 				.antMatchers("/student/").permitAll()
+				.antMatchers("/group/").permitAll()
 				.antMatchers("/login*").permitAll()
 				.antMatchers("/register*").permitAll()
 				.anyRequest().authenticated()
@@ -59,7 +61,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.and()
 			.logout()
 				.logoutUrl("/logout")
-				.logoutSuccessUrl("/");
+				.logoutSuccessUrl("/")
+		.and()
+			.csrf()
+				.disable();
 	}
 
 

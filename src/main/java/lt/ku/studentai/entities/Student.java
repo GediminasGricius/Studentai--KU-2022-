@@ -13,6 +13,8 @@ import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="students")
@@ -35,6 +37,7 @@ public class Student {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="group_id")
+	@JsonIgnore
 	private Group group;
 	
 	public Student() {

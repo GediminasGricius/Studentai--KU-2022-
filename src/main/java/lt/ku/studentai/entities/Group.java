@@ -1,5 +1,6 @@
 package lt.ku.studentai.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,24 +12,35 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="groups_student")
-public class Group {
+public class Group implements Serializable{
+	/**
+	 * 
+	 */
+	public static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	public Integer id;
 	
 	@Column(nullable = false, length = 64)
-	private String name;
+	@Length(min=3, max=64, message = "Vardas turi būti ilgesnis nei 3 simboliai ir trumpesnis už 64 simbolius")
+	public String name;
 	
 	@Column
-	private Integer year;
+	public Integer year;
 	
 	@Column
-	private String fileName;
+	public String fileName;
 	
-	@OneToMany(mappedBy = "group", fetch = FetchType.EAGER)
-	private List<Student> students;
+	@OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
+	@JsonIgnore
+	public List<Student> students;
 	
 	public Group() {
 		

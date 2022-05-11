@@ -13,7 +13,7 @@ import lt.ku.studentai.repositories.GroupRepository;
 @Service
 public class GroupService {
 	@Autowired
-	GroupRepository groupRepository;
+	public GroupRepository groupRepository;
 	
 	public Group addGroup(Group group) {
 		return groupRepository.save(group);
@@ -36,7 +36,7 @@ public class GroupService {
 	}
 	
 	public Group getGroup(Integer id) {
-		return groupRepository.getById(id);
+		return groupRepository.findById(id).get();
 	}
 	
 }

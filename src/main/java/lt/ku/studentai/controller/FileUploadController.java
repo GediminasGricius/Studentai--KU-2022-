@@ -33,6 +33,22 @@ public class FileUploadController {
 		return home();
 	}
 	
+	@GetMapping("/img/{filename}")
+	@ResponseBody
+	public ResponseEntity<Resource> getImage(@PathVariable String filename){
+		
+		Resource file=storageService.loadFile(filename);
+		if (file==null) {
+			return ResponseEntity.status(404).body(null);
+		}
+		return ResponseEntity
+				.ok()
+				.header(HttpHeaders.CONTENT_TYPE, storageService.getContentType(filename)) 
+				.body(file);
+				//.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; ");
+		
+	}
+	
 	@GetMapping("/{filename}")
 	@ResponseBody
 	public ResponseEntity<Resource> getFile(@PathVariable String filename){
