@@ -7,6 +7,7 @@ import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,16 +37,17 @@ public class GroupRestController {
 		return new ResponseEntity<>(new ErrorResponse("Unknown error"), HttpStatus.BAD_REQUEST);
 	}
 	
+	@CrossOrigin
 	@GetMapping("/")
 	public List<Group> groups() {
 		return groupService.getGroups();
 	}
-	
+	@CrossOrigin
 	@GetMapping("/{id}")
 	public Group group(@PathVariable Integer id) {
 		return groupService.getGroup(id);
 	}
-	
+	@CrossOrigin
 	@PostMapping("/")
 	public Group newGroup(
 			@RequestParam("name") String name,
@@ -54,7 +56,6 @@ public class GroupRestController {
 		Group g=new Group(name, year);
 		g=groupService.addGroup(g);
 		return g;
-		
 	}
 	
 }
